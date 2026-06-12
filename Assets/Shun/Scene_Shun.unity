@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 563999368}
   - component: {fileID: 563999370}
   - component: {fileID: 563999369}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: a
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 971863928}
   - component: {fileID: 971863927}
   - component: {fileID: 971863926}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,17 +1456,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971863924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalRotation: {x: 0.02455761, y: -0, z: -0, w: 0.99969846}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00021789875}
+  m_LocalScale: {x: 2.7602, y: 2.7602, z: 1.3801}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2122563261}
   m_Father: {fileID: 1347803858}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.814, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.14}
+  m_AnchoredPosition: {x: 0.00024080287, y: 172}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971863926
@@ -2170,7 +2170,8 @@ GameObject:
   - component: {fileID: 1347803855}
   - component: {fileID: 1347803860}
   - component: {fileID: 1347803859}
-  m_Layer: 5
+  - component: {fileID: 1347803861}
+  m_Layer: 0
   m_Name: Canvas_Choice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2248,8 +2249,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347803854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.17}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 0.49999997}
+  m_LocalPosition: {x: 0, y: 0, z: -0.007}
+  m_LocalScale: {x: 0.0030089715, y: 0.0030089715, z: 0.0030089715}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1608568785}
@@ -2258,7 +2259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.09, y: 1.07}
+  m_AnchoredPosition: {x: -0.01, y: 0.76}
   m_SizeDelta: {x: 380, y: 521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347803859
@@ -2309,6 +2310,19 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 1347803859}
+--- !u!114 &1347803861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347803854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1533785930, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllowFocusView: 1
 --- !u!1 &1608568784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,7 +2337,7 @@ GameObject:
   - component: {fileID: 1608568788}
   - component: {fileID: 1608568787}
   - component: {fileID: 1608568786}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2339,7 +2353,7 @@ RectTransform:
   m_GameObject: {fileID: 1608568784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 2.7602, y: 2.7602, z: 1.4049453}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 563999368}
@@ -2347,7 +2361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 44}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608568786
@@ -2995,7 +3009,7 @@ GameObject:
   - component: {fileID: 2122563261}
   - component: {fileID: 2122563263}
   - component: {fileID: 2122563262}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3041,7 +3055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: a
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
