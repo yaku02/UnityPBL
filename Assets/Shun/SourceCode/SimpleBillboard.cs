@@ -9,6 +9,8 @@ public class SimpleBillboard : UdonSharpBehaviour
 
     private VRCPlayerApi player;
 
+    [SerializeField] private float rotationSpeed = 3.0f;
+
     void Start()
     {
         player = Networking.LocalPlayer;
@@ -28,7 +30,15 @@ public class SimpleBillboard : UdonSharpBehaviour
 
         if (direction.sqrMagnitude > 0.001f)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            Quaternion lookAtPlayerRotation = Quaternion.LookRotation(direction);
+            Quaternion targetRotation = lookAtPlayerRotation * Quaternion.Euler(0, 180f, 0);
+
+            // 現在の回転から目標の回転へ滑らかに近づける
+            transform.rotation = Quaternion.Slerp(
+                            transform.rotation,
+                            targetRotation,
+                            rotationSpeed * Time.deltaTime
+            );
         }
     }
 }
