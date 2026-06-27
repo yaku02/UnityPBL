@@ -1,47 +1,81 @@
-﻿
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
-using VRC.SDKBase;
 using VRC.Udon;
 
-// このスクリプトを貼ったら、自動で SimpleBillboard も強制的に追加する設定
 [RequireComponent(typeof(SimpleBillboard))]
 public class TalkCharacter : UdonSharpBehaviour
 {
     [SerializeField] private TalkingManager talkingManager;
-
     private SimpleBillboard billboard;
 
-    // このキャラクターが持っている2つのキャンバス
     public GameObject choiceCanvas;
-    public GameObject textCanvas;
+    public GameObject[] textCanvases;
 
-    [HideInInspector] public bool isTalking = false;
+    // ★外部からセットするためのパブリック変数を用意
+    [HideInInspector] public int resultIndex = 0;
 
     void Start()
     {
-        // ビルボードコンポーネントを取得
         billboard = GetComponent<SimpleBillboard>();
-
-        // 初期状態（会話してないとき）はビルボードをオフにしておく
         if (billboard != null) billboard.enabled = false;
     }
 
     void Update()
     {
-        if (billboard != null)
-        {
-            // isTalking が true なら enabled も true、false なら false になる
-            billboard.enabled = isTalking;
-        }
+        if (billboard != null) billboard.enabled = IsTalking();
     }
 
     public override void Interact()
     {
-        if (talkingManager != null)
+        talkingManager.OnCharacterClicked(this);
+    }
+
+    public void OpenChoice()
+    {
+        if (choiceCanvas != null) choiceCanvas.SetActive(true);
+    }
+
+    // ★引数なしのShowResult内で、resultIndexを使って処理する
+    public void ShowResult()
+    {
+        if (choiceCanvas != null)
+            choiceCanvas.SetActive(false);
+
+        // 配列の範囲内か安全確認をしてから表示
+        if (textCanvases != null && resultIndex >= 0 && resultIndex < textCanvases.Length)
         {
-            // マネージャーに「私がクリックされました」と通知する
-            talkingManager.OnCharacterClicked(this);
+            if (textCanvases[resultIndex] != null)
+                textCanvases[resultIndex].SetActive(true);
         }
+
+        Debug.Log($"Showed Result Index: {resultIndex}");
+    }
+
+    public void Close()
+    {
+        if (choiceCanvas != null) choiceCanvas.SetActive(false);
+
+        if (textCanvases != null)
+        {
+            foreach (GameObject canvas in textCanvases)
+            {
+                if (canvas != null) canvas.SetActive(false);
+            }
+        }
+
+        talkingManager.EndConversation();
+    }
+
+    public bool IsTalking()
+    {
+        if (choiceCanvas != null && choiceCanvas.activeSelf) return true;
+        if (textCanvases != null)
+        {
+            foreach (GameObject canvas in textCanvases)
+            {
+                if (canvas != null && canvas.activeSelf) return true;
+            }
+        }
+        return false;
     }
 }

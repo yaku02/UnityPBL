@@ -34,7 +34,7 @@ public class Follower : UdonSharpBehaviour
     {
         if (player == null) return;
 
-        if (talkChar != null && talkChar.isTalking)
+        if (talkChar != null && talkChar.IsTalking())
         {
             return;
         }
@@ -79,9 +79,9 @@ public class Follower : UdonSharpBehaviour
 
     void Update()
     {
-        if (talkChar != null && talkChar.isTalking) return;
+        if (talkChar != null && talkChar.IsTalking()) return;
 
-        timer += Time.deltaTime;
+            timer += Time.deltaTime;
 
 
         float distance = Vector3.Distance(
