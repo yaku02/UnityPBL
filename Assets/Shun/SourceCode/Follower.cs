@@ -23,9 +23,9 @@ public class Follower : UdonSharpBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = Networking.LocalPlayer;
-
         talkChar = GetComponent<TalkCharacter>();
+
+        player = Networking.LocalPlayer;
 
         PickNewOffset();
     }
@@ -33,11 +33,7 @@ public class Follower : UdonSharpBehaviour
     void FixedUpdate()
     {
         if (player == null) return;
-
-        if (talkChar != null && talkChar.IsTalking())
-        {
-            return;
-        }
+        if (talkChar.IsTalking()) return;
 
         Vector3 center = player.GetPosition() + Vector3.up * offsetY;
 
@@ -79,9 +75,9 @@ public class Follower : UdonSharpBehaviour
 
     void Update()
     {
-        if (talkChar != null && talkChar.IsTalking()) return;
+        if (talkChar.IsTalking()) return;
 
-            timer += Time.deltaTime;
+        timer += Time.deltaTime;
 
 
         float distance = Vector3.Distance(

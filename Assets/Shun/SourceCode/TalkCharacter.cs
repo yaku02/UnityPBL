@@ -2,80 +2,83 @@
 using UnityEngine;
 using VRC.Udon;
 
-[RequireComponent(typeof(SimpleBillboard))]
 public class TalkCharacter : UdonSharpBehaviour
 {
-    [SerializeField] private TalkingManager talkingManager;
-    private SimpleBillboard billboard;
-
     public GameObject choiceCanvas;
-    public GameObject[] textCanvases;
+    public GameObject[] textCanvases; // インスペクターで TextCanvas, (1), (2) を登録
 
-    // ★外部からセットするためのパブリック変数を用意
     [HideInInspector] public int resultIndex = 0;
-
-    void Start()
-    {
-        billboard = GetComponent<SimpleBillboard>();
-        if (billboard != null) billboard.enabled = false;
-    }
-
-    void Update()
-    {
-        if (billboard != null) billboard.enabled = IsTalking();
-    }
 
     public override void Interact()
     {
-        talkingManager.OnCharacterClicked(this);
+        if (IsTalking())
+        {
+            CloseAllCanvases();
+        }
+        else
+        {
+            OpenChoice();
+        }
     }
 
+    // 選択肢を開く処理
     public void OpenChoice()
     {
-        if (choiceCanvas != null) choiceCanvas.SetActive(true);
+        CloseAllCanvases();
+        if (choiceCanvas != null)
+            choiceCanvas.SetActive(true);
     }
 
-    // ★引数なしのShowResult内で、resultIndexを使って処理する
+    // 各選択肢ボタンから結果画面へ切り替える処理
     public void ShowResult()
     {
         if (choiceCanvas != null)
             choiceCanvas.SetActive(false);
 
-        // 配列の範囲内か安全確認をしてから表示
+        // 指定された番号のテキストキャンバスだけを表示
         if (textCanvases != null && resultIndex >= 0 && resultIndex < textCanvases.Length)
         {
             if (textCanvases[resultIndex] != null)
                 textCanvases[resultIndex].SetActive(true);
         }
-
-        Debug.Log($"Showed Result Index: {resultIndex}");
     }
 
-    public void Close()
+    public void ShowResult0() { resultIndex = 0; ShowResult(); }
+    public void ShowResult1() { resultIndex = 1; ShowResult(); }
+    public void ShowResult2() { resultIndex = 2; ShowResult(); }
+    public void ShowResult3() { resultIndex = 3; ShowResult(); }
+
+    private void CloseAllCanvases()
     {
-        if (choiceCanvas != null) choiceCanvas.SetActive(false);
+        if (choiceCanvas != null)
+            choiceCanvas.SetActive(false);
 
         if (textCanvases != null)
         {
             foreach (GameObject canvas in textCanvases)
             {
-                if (canvas != null) canvas.SetActive(false);
+                if (canvas != null)
+                    canvas.SetActive(false);
             }
         }
-
-        talkingManager.EndConversation();
     }
 
+    // 現在、会話UIが開いているかどうかを判定する関数
     public bool IsTalking()
     {
-        if (choiceCanvas != null && choiceCanvas.activeSelf) return true;
+        if (choiceCanvas != null && choiceCanvas.activeSelf)
+            return true;
+
         if (textCanvases != null)
         {
             foreach (GameObject canvas in textCanvases)
             {
-                if (canvas != null && canvas.activeSelf) return true;
+                if (canvas != null && canvas.activeSelf)
+                    return true;
             }
         }
+
         return false;
     }
+
 }
