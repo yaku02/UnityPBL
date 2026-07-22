@@ -35,12 +35,13 @@ public class TalkCharacter : UdonSharpBehaviour
         if (choiceCanvas != null)
             choiceCanvas.SetActive(false);
 
-        // 指定された番号のテキストキャンバスだけを表示
+        // 指定された番号のテキストだけを表示
         if (textCanvases != null && resultIndex >= 0 && resultIndex < textCanvases.Length)
         {
             if (textCanvases[resultIndex] != null)
                 textCanvases[resultIndex].SetActive(true);
         }
+
     }
 
     public void ShowResult0() { resultIndex = 0; ShowResult(); }

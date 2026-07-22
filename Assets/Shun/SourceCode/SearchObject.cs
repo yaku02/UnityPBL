@@ -9,6 +9,9 @@ public class SearchObject : UdonSharpBehaviour
     [Header("インタラクトしたときに表示するキャンバス")]
     public GameObject targetCanvas;
 
+    [Header("効果音再生クラス")]
+    public SoundManager soundManager;
+
     void Start()
     {
         // ゲーム開始時にターゲットのキャンバスを自動で非表示（隠す）にする
@@ -20,6 +23,11 @@ public class SearchObject : UdonSharpBehaviour
 
     public override void Interact()
     {
+        if(soundManager != null)
+        {
+            soundManager.PlayItemSound();
+        }
+
         // 1. 指定されたキャンバスを表示（アクティブ）にする
         if (targetCanvas != null)
         {
